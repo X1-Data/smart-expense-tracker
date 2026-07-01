@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+
+<html class="light" lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>แดชบอร์ดผู้ดูแลระบบ | AI Smart Expense Tracker</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#93000a",
+                    "primary": "#44664a",
+                    "surface-container-highest": "#e2e3de",
+                    "inverse-primary": "#aad0ad",
+                    "primary-fixed-dim": "#aad0ad",
+                    "secondary-container": "#ffab69",
+                    "tertiary-container": "#45a952",
+                    "primary-fixed": "#c6ecc8",
+                    "outline-variant": "#c2c8bf",
+                    "on-tertiary-container": "#00370e",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed-variant": "#2d4e33",
+                    "surface-container-high": "#e8e8e4",
+                    "on-surface-variant": "#424842",
+                    "inverse-surface": "#2f312e",
+                    "on-background": "#1a1c1a",
+                    "secondary-fixed": "#ffdcc4",
+                    "on-tertiary-fixed-variant": "#005319",
+                    "on-tertiary-fixed": "#002106",
+                    "tertiary-fixed-dim": "#78dc7e",
+                    "error": "#ba1a1a",
+                    "tertiary": "#006e24",
+                    "on-primary-container": "#13341c",
+                    "primary-container": "#7a9e7e",
+                    "surface-container": "#eeeeea",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed-dim": "#ffb780",
+                    "surface-dim": "#dadad6",
+                    "surface": "#fafaf5",
+                    "on-secondary-fixed": "#2f1400",
+                    "on-tertiary": "#ffffff",
+                    "secondary": "#8e4e14",
+                    "tertiary-fixed": "#93f998",
+                    "background": "#fafaf5",
+                    "on-surface": "#1a1c1a",
+                    "surface-tint": "#44664a",
+                    "on-primary-fixed": "#00210b",
+                    "surface-variant": "#e2e3de",
+                    "surface-container-low": "#f4f4ef",
+                    "on-secondary": "#ffffff",
+                    "surface-bright": "#fafaf5",
+                    "inverse-on-surface": "#f1f1ec",
+                    "on-secondary-fixed-variant": "#6f3800",
+                    "on-secondary-container": "#783d01",
+                    "on-error": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "outline": "#727971"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "md": "16px",
+                    "sm": "8px",
+                    "xl": "32px",
+                    "unit": "4px",
+                    "container-max": "1200px",
+                    "xs": "4px",
+                    "lg": "24px",
+                    "gutter": "20px"
+            },
+            "fontFamily": {
+                    "body": ["Inter"],
+                    "h3": ["Inter"],
+                    "h1": ["Inter"],
+                    "label": ["Inter"],
+                    "h2": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "button": ["Inter"]
+            },
+            "fontSize": {
+                    "body": ["15px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "h3": ["17px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "h1": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "label": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "h2": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                    "button": ["15px", {"lineHeight": "20px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #fafaf5; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; vertical-align: middle; }
+        .performance-ring { transition: stroke-dashoffset 1s ease-in-out; stroke-linecap: round; animation: ring-draw 2s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+        @keyframes ring-draw { from { stroke-dashoffset: 351.85; } }
+        .active-row { background-color: #E8EFE9; }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- Side Navigation Bar -->
+<aside class="fixed left-0 top-0 h-screen w-[240px] bg-surface border-r border-outline-variant flex flex-col py-lg px-md z-50">
+<div class="mb-xl px-sm">
+<h1 class="text-h2 font-h2 text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">account_balance_wallet</span>
+                Smart Expense
+            </h1>
+<p class="text-label text-on-surface-variant opacity-70">AI Financial Companion</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-body">หน้าแรก</span>
+</a>
+<a class="flex items-center gap-3 px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">auto_awesome</span>
+<span class="text-body">เพิ่มรายการอัจฉริยะ ✨</span>
+</a>
+<a class="flex items-center gap-3 px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="text-body">เพิ่มรายการ</span>
+</a>
+<a class="flex items-center gap-3 px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="text-body">ประวัติ</span>
+</a>
+<a class="flex items-center gap-3 px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="text-body">การวิเคราะห์</span>
+</a>
+<a class="flex items-center gap-3 px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">local_fire_department</span>
+<span class="text-body">สถิติต่อเนื่อง</span>
+</a>
+<a class="flex items-center gap-3 px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">psychology</span>
+<span class="text-body">คำแนะนำจาก AI</span>
+</a>
+<a class="flex items-center gap-3 px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-body">การตั้งค่า</span>
+</a>
+<a class="flex items-center gap-3 px-md py-sm rounded-lg text-primary font-bold border-r-4 border-primary bg-primary-container/10 transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-body">แดชบอร์ดผู้ดูแลระบบ</span>
+</a>
+</nav>
+<div class="mt-auto p-sm bg-surface-container rounded-xl flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-[18px]">admin_panel_settings</span>
+</div>
+<div>
+<p class="text-label font-bold text-on-surface">ผู้ดูแลระบบ</p>
+<p class="text-[10px] text-on-surface-variant">System Root</p>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-[240px] pt-12 pb-xl px-xl max-w-[1400px]">
+<!-- Stats Grid -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-lg mb-xl">
+<div class="bg-white p-lg rounded-xl shadow-sm border border-outline-variant/30 flex flex-col gap-sm">
+<div class="flex justify-between items-center">
+<span class="text-label text-on-surface-variant font-medium">👤 ผู้ใช้ทั้งหมด</span>
+<span class="material-symbols-outlined text-primary">groups</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-h1 font-h1">1,284 คน</span>
+<span class="text-tertiary text-label font-bold flex items-center">+12% <span class="material-symbols-outlined text-[16px]">trending_up</span></span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-1 mt-2">
+<div class="bg-primary h-full rounded-full" style="width: 12%"></div>
+</div>
+</div>
+<div class="bg-white p-lg rounded-xl shadow-sm border border-outline-variant/30 flex flex-col gap-sm">
+<div class="flex justify-between items-center">
+<span class="text-label text-on-surface-variant font-medium">📋 รายการทั้งหมด</span>
+<span class="material-symbols-outlined text-secondary">receipt_long</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-h1 font-h1">48,392 รายการ</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-1 mt-2">
+<div class="bg-secondary h-full rounded-full" style="width: 65%"></div>
+</div>
+</div>
+<div class="bg-white p-lg rounded-xl shadow-sm border border-outline-variant/30 flex flex-col gap-sm">
+<div class="flex justify-between items-center">
+<span class="text-label text-on-surface-variant font-medium">💬 Feedback AI</span>
+<span class="material-symbols-outlined text-tertiary">thumbs_up_down</span>
+</div>
+<div class="flex flex-col">
+<span class="text-h1 font-h1">891 รายการ</span>
+<span class="text-on-surface-variant text-label mt-1">ใหม่วันนี้ 24</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-1 mt-2">
+<div class="bg-tertiary h-full rounded-full" style="width: 40%"></div>
+</div>
+</div>
+</section>
+<!-- Main Content -->
+<div class="grid grid-cols-12 gap-lg">
+<!-- AI Model Section -->
+<div class="col-span-12 bg-white rounded-xl shadow-sm border border-outline-variant/30 overflow-hidden">
+<div class="p-lg border-b border-outline-variant/30 flex justify-between items-center">
+<div class="flex items-center gap-3">
+<h2 class="text-h3 font-h3 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">model_training</span>
+                            ประสิทธิภาพของ AI Core
+                        </h2>
+<span class="px-2 py-0.5 bg-primary/10 text-primary text-[10px] font-bold rounded border border-primary/20 uppercase tracking-wider">v1.2 — Active</span>
+</div>
+<button class="px-md py-sm rounded-lg text-button flex items-center gap-2 transition-all border border-outline-variant hover:bg-surface-container text-on-surface" onclick="confirm('คุณต้องการเริ่มกระบวนการ Retrain โมเดลใหม่หรือไม่?')">
+<span>🔄 Retrain โมเดล</span>
+</button>
+</div>
+<div class="p-lg grid grid-cols-1 md:grid-cols-3 gap-lg max-w-4xl mx-auto">
+<!-- Accuracy Ring -->
+<div class="flex flex-col items-center gap-md">
+<div class="relative w-24 h-24 flex items-center justify-center">
+<svg class="w-full h-full -rotate-90">
+<circle cx="48" cy="48" fill="transparent" r="42" stroke="#eeeeea" stroke-width="6"></circle>
+<circle class="performance-ring" cx="48" cy="48" fill="transparent" r="42" stroke="#44664a" stroke-dasharray="263.89" stroke-dashoffset="34.3" stroke-width="6"></circle>
+</svg>
+<span class="absolute text-h3 font-h3">87%</span>
+</div>
+<div class="text-center">
+<p class="text-label font-bold">Accuracy</p>
+<p class="text-[10px] text-on-surface-variant italic">ความแม่นยำรวม</p>
+</div>
+</div>
+<!-- Precision Ring -->
+<div class="flex flex-col items-center gap-md">
+<div class="relative w-24 h-24 flex items-center justify-center">
+<svg class="w-full h-full -rotate-90">
+<circle cx="48" cy="48" fill="transparent" r="42" stroke="#eeeeea" stroke-width="6"></circle>
+<circle class="performance-ring" cx="48" cy="48" fill="transparent" r="42" stroke="#8e4e14" stroke-dasharray="263.89" stroke-dashoffset="42.2" stroke-width="6"></circle>
+</svg>
+<span class="absolute text-h3 font-h3">84%</span>
+</div>
+<div class="text-center">
+<p class="text-label font-bold">Precision</p>
+<p class="text-[10px] text-on-surface-variant italic">ความเที่ยงตรง</p>
+</div>
+</div>
+<!-- Recall Ring -->
+<div class="flex flex-col items-center gap-md">
+<div class="relative w-24 h-24 flex items-center justify-center">
+<svg class="w-full h-full -rotate-90">
+<circle cx="48" cy="48" fill="transparent" r="42" stroke="#eeeeea" stroke-width="6"></circle>
+<circle class="performance-ring" cx="48" cy="48" fill="transparent" r="42" stroke="#006e24" stroke-dasharray="263.89" stroke-dashoffset="29.0" stroke-width="6"></circle>
+</svg>
+<span class="absolute text-h3 font-h3">89%</span>
+</div>
+<div class="text-center">
+<p class="text-label font-bold">Recall</p>
+<p class="text-[10px] text-on-surface-variant italic">ความครอบคลุม</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Retraining History Table -->
+<div class="col-span-12 bg-white rounded-xl shadow-sm border border-outline-variant/30 overflow-hidden">
+<div class="p-lg border-b border-outline-variant/30 flex justify-between items-center">
+<h2 class="text-h3 font-h3 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">history</span>
+                        ประวัติการ Retrain โมเดล
+                    </h2>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-label text-on-surface-variant">
+<th class="px-lg py-md font-bold uppercase tracking-wider">วันที่</th>
+<th class="px-lg py-md font-bold uppercase tracking-wider">เวอร์ชัน</th>
+<th class="px-lg py-md font-bold uppercase tracking-wider">Feedback ที่ใช้</th>
+<th class="px-lg py-md font-bold uppercase tracking-wider">Accuracy</th>
+<th class="px-lg py-md font-bold uppercase tracking-wider">สถานะ</th>
+<th class="px-lg py-md font-bold uppercase tracking-wider text-right">การจัดการ</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/20">
+<tr class="active-row hover:bg-primary/5 transition-colors">
+<td class="px-lg py-md text-body-sm">24 ต.ค. 2023 04:12</td>
+<td class="px-lg py-md font-mono text-body-sm">v1.2.4-stable</td>
+<td class="px-lg py-md text-body-sm">1,205 รายการ</td>
+<td class="px-lg py-md text-body-sm text-tertiary font-bold">87.2%</td>
+<td class="px-lg py-md">
+<span class="px-2 py-1 bg-tertiary-container/20 text-tertiary text-[10px] font-bold rounded-full uppercase">สำเร็จ</span>
+</td>
+<td class="px-lg py-md text-right">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-lg py-md text-body-sm">22 ต.ค. 2023 23:45</td>
+<td class="px-lg py-md font-mono text-body-sm">v1.2.3-exp</td>
+<td class="px-lg py-md text-body-sm">840 รายการ</td>
+<td class="px-lg py-md text-body-sm text-on-surface-variant">86.4%</td>
+<td class="px-lg py-md">
+<span class="px-2 py-1 bg-surface-variant text-on-surface-variant text-[10px] font-bold rounded-full uppercase">ไม่ใช้งาน</span>
+</td>
+<td class="px-lg py-md text-right">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-lg py-md text-body-sm">20 ต.ค. 2023 11:20</td>
+<td class="px-lg py-md font-mono text-body-sm">v1.2.2</td>
+<td class="px-lg py-md text-body-sm">2,410 รายการ</td>
+<td class="px-lg py-md text-body-sm text-tertiary font-bold">88.1%</td>
+<td class="px-lg py-md">
+<span class="px-2 py-1 bg-tertiary-container/20 text-tertiary text-[10px] font-bold rounded-full uppercase">สำเร็จ</span>
+</td>
+<td class="px-lg py-md text-right">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-lg py-md text-body-sm">18 ต.ค. 2023 18:30</td>
+<td class="px-lg py-md font-mono text-body-sm">v1.2.1-fail</td>
+<td class="px-lg py-md text-body-sm">500 รายการ</td>
+<td class="px-lg py-md text-body-sm text-error font-bold">81.5%</td>
+<td class="px-lg py-md">
+<span class="px-2 py-1 bg-error-container text-on-error-container text-[10px] font-bold rounded-full uppercase">ล้มเหลว</span>
+</td>
+<td class="px-lg py-md text-right">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-md bg-surface-container-low border-t border-outline-variant/30 flex justify-between items-center px-lg">
+<span class="text-label text-on-surface-variant">แสดง 4 จาก 128 รายการ</span>
+<div class="flex gap-sm">
+<button class="w-8 h-8 rounded border border-outline-variant flex items-center justify-center hover:bg-white disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded border border-outline-variant flex items-center justify-center hover:bg-white">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Tab/hover effect logic
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                if (!link.classList.contains('font-bold')) {
+                    document.querySelectorAll('nav a').forEach(l => {
+                        l.classList.remove('text-primary', 'font-bold', 'border-r-4', 'border-primary', 'bg-primary-container/10');
+                        l.classList.add('text-on-surface-variant');
+                    });
+                    link.classList.add('text-primary', 'font-bold', 'border-r-4', 'border-primary', 'bg-primary-container/10');
+                    link.classList.remove('text-on-surface-variant');
+                }
+            });
+        });
+    </script>
+</body></html>
